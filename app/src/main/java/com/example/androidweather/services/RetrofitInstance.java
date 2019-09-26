@@ -8,7 +8,7 @@ public class RetrofitInstance {
     private static Retrofit retrofit = null;
     private static String BASE_URL = "https://api.darksky.net/forecast/";
 
-    public static GetWeatherService getWeatherService() {
+    public static WeatherService getWeatherService() {
 
         if (retrofit== null) {
             retrofit = new Retrofit
@@ -17,5 +17,6 @@ public class RetrofitInstance {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
+        return retrofit.create(WeatherService.class);
     }
 }

@@ -5,9 +5,14 @@ import com.example.androidweather.model.Example;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
-public interface GetWeatherService {
+public interface WeatherService {
 
-    @GET("R.string.dark_sky_key,{latitude},{longitude}")
-    Call<Example> getWeatherData();
+    @GET("{api_key}/{latitude},{longitude}")
+    Call<Example> getWeatherData(
+            @Path("api_key") String apiKey,
+            @Path("latitude") Double latitude,
+            @Path("longitude") Double longitude
+    );
 }

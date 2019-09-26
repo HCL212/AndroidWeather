@@ -23,7 +23,7 @@ public class Currently {
     private Integer nearestStormBearing;
     @SerializedName("precipIntensity")
     @Expose
-    private Integer precipIntensity;
+    private Double precipIntensity;
     @SerializedName("precipProbability")
     @Expose
     private Integer precipProbability;
@@ -50,13 +50,13 @@ public class Currently {
     private Double windGust;
     @SerializedName("windBearing")
     @Expose
-    private Integer windBearing;
+    private Double windBearing;
     @SerializedName("cloudCover")
     @Expose
     private Double cloudCover;
     @SerializedName("uvIndex")
     @Expose
-    private Integer uvIndex;
+    private Double uvIndex;
     @SerializedName("visibility")
     @Expose
     private Double visibility;
@@ -104,11 +104,11 @@ public class Currently {
         this.nearestStormBearing = nearestStormBearing;
     }
 
-    public Integer getPrecipIntensity() {
+    public Double getPrecipIntensity() {
         return precipIntensity;
     }
 
-    public void setPrecipIntensity(Integer precipIntensity) {
+    public void setPrecipIntensity(Double precipIntensity) {
         this.precipIntensity = precipIntensity;
     }
 
@@ -176,11 +176,11 @@ public class Currently {
         this.windGust = windGust;
     }
 
-    public Integer getWindBearing() {
+    public Double getWindBearing() {
         return windBearing;
     }
 
-    public void setWindBearing(Integer windBearing) {
+    public void setWindBearing(Double windBearing) {
         this.windBearing = windBearing;
     }
 
@@ -192,11 +192,11 @@ public class Currently {
         this.cloudCover = cloudCover;
     }
 
-    public Integer getUvIndex() {
+    public Double getUvIndex() {
         return uvIndex;
     }
 
-    public void setUvIndex(Integer uvIndex) {
+    public void setUvIndex(Double uvIndex) {
         this.uvIndex = uvIndex;
     }
 
