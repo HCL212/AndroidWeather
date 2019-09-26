@@ -19,9 +19,21 @@ public class MainActivity extends AppCompatActivity {
 
     // TODO: store api key private
     // TODO: get user lat and long from GPS
+    // TODO: daily forecast on bottom, in collection view
+    // TODO: use weather icons
+    // TODO: cache date in room or realm database, able to refresh data
+    // TODO: readme
+    // TODO: FUTURE: details of each day after selecting
+    // TODO: FUTURE: user add locations
+
     private Double currTemp = 0.0;
     private Double latitude = 40.712776;
     private Double longitude = -74.005974;
+
+    // DARK SKY API KEY IS STORED IN GRADLE
+    //private String key = BuildConfig.DarkSkyKey;
+
+    // FOR DEMO PURPOSES, DARK SKY API KEY IS INCLUDED IN MAINACTIVITY
     private String key = "2daafb9d2b0e6083c298882e99e100aa";
 
     private TextView tempView;
@@ -50,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 if (forecast != null && forecast.getCurrently() != null){
                     currTemp = forecast.getCurrently().getTemperature();
                     String tempString = Double.toString(currTemp);
-                    tempView.setText(tempString);
+                    tempView.setText(tempString+"°F");
 
                     weatherStatus.setText(forecast.getCurrently().getSummary());
                 }
