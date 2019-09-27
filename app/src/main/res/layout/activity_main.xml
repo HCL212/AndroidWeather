@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -21,15 +22,29 @@
                 android:layout_height="wrap_content"
                 android:textSize="24dp"
                 android:textColor="@android:color/white"
-                android:text="DHAKA, BD"/>
-            <TextView android:id="@+id/updated_at"
+                android:text="CITY, STATE"/>
+            <TextView android:id="@+id/latitude"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14dp"
+                android:textSize="15dp"
                 android:textColor="@android:color/white"
-                android:text="20 April 2012, 20:08 PM"/>
+                android:text="LATITUDE"/>
+            <TextView android:id="@+id/longitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textColor="@android:color/white"
+                android:text="LONGITUDE"/>
+
         </LinearLayout>
 
+        <ImageButton
+            android:id="@+id/refresh_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:background="#122259"
+            app:srcCompat="@android:drawable/ic_menu_rotate" />
 
         <LinearLayout
             android:id="@+id/overviewContainer"
@@ -45,7 +60,7 @@
                 android:textSize="18dp"
                 android:textColor="@android:color/white"
                 android:layout_gravity="center"
-                android:text="Clear Sky"/>
+                android:text="STATUS"/>
             <TextView android:id="@+id/temp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -53,27 +68,20 @@
                 android:textColor="@android:color/white"
                 android:fontFamily="sans-serif-thin"
                 android:layout_gravity="center"
-                android:text="29°F"/>
+                android:text="TEMP°F"/>
 
         </LinearLayout>
 
     </RelativeLayout>
 
-
-    <ProgressBar
-        android:id="@+id/loader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="gone"/>
-
     <TextView
-        android:id="@+id/errorText"
+        android:id="@+id/darksky"
+        android:layout_alignBottom="@id/mainContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:visibility="gone"
-        android:text="Something went wrong"/>
-
+        android:clickable="true"
+        android:linksClickable="true"
+        android:text="Powered by Dark Sky"/>
 
 </RelativeLayout>
