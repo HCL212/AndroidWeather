@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:paddingBottom="8dp"
     android:layout_width="match_parent"
@@ -10,9 +11,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="MONDAY"
+        android:layout_centerVertical="true"
         android:textSize="20sp"
         android:textColor="@android:color/white"
         android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/weatherIcon"
+        android:layout_centerInParent="true"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_wi_alien"/>
 
     <TextView
         android:id="@+id/forecast_high"
@@ -20,6 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="5dp"
+        android:layout_centerVertical="true"
         android:text="HIGH"
         android:textColor="@android:color/white"
         android:textSize="20sp" />
@@ -29,6 +39,7 @@
         android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:text="LOW"
         android:textColor="@android:color/darker_gray"
         android:textSize="20sp" />

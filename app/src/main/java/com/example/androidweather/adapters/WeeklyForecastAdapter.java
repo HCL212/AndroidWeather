@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -49,17 +50,42 @@ public class WeeklyForecastAdapter extends RecyclerView.Adapter<WeeklyForecastAd
     public void onBindViewHolder(ViewHolder holder, int position) {
         Datum__ forecast = mData.get(position);
 
-        //String day = Double.toString(forecast.getTime());
+        String iconString = forecast.getIcon();
         String high = Double.toString(forecast.getTemperatureHigh());
         String low = Double.toString(forecast.getTemperatureLow());
 
-        long dateInMilli = 86400000/forecast.getTime();
-        DateFormat convert = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
-        Date result = new Date(dateInMilli);
+        // display day of the week (ie: Monday)
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
+        Date dateFormat = new java.util.Date(forecast.getTime() * 1000);
+        String weekday = sdf.format(dateFormat);
 
-        holder.forecastDay.setText(convert.format(result));
+        holder.forecastDay.setText(weekday);
         holder.forecastDayHigh.setText(high);
         holder.forecastDayLow.setText(low);
+
+        if (iconString.equals("clear-day")){
+            holder.forecastIcon.setImageResource(R.drawable.ic_wi_day_sunny);
+        } else if (iconString.equals("clear-night")) {
+            holder.forecastIcon.setImageResource(R.drawable.ic_wi_night_clear);
+        } else if (iconString.equals("rain")) {
+            holder.forecastIcon.setImageResource(R.drawable.ic_wi_rain);
+        } else if (iconString.equals("snow")) {
+            holder.forecastIcon.setImageResource(R.drawable.ic_wi_snow);
+        } else if (iconString.equals("sleet")) {
+            holder.forecastIcon.setImageResource(R.drawable.ic_wi_rain_mix);
+        } else if (iconString.equals("wind")) {
+            holder.forecastIcon.setImageResource(R.drawable.ic_wi_windy);
+        } else if (iconString.equals("fog")) {
+            holder.forecastIcon.setImageResource(R.drawable.ic_wi_fog);
+        } else if (iconString.equals("cloudy")) {
+            holder.forecastIcon.setImageResource(R.drawable.ic_wi_cloudy);
+        } else if (iconString.equals("partly-cloudy-day")) {
+            holder.forecastIcon.setImageResource(R.drawable.ic_wi_day_cloudy);
+        } else if (iconString.equals("partly-cloudy-night")) {
+            holder.forecastIcon.setImageResource(R.drawable.ic_wi_night_cloudy);
+        } else {
+            holder.forecastIcon.setImageResource(R.drawable.ic_wi_alien);
+        }
     }
 
     //@brief: Returns total number of rows
@@ -74,12 +100,14 @@ public class WeeklyForecastAdapter extends RecyclerView.Adapter<WeeklyForecastAd
         TextView forecastDay;
         TextView forecastDayHigh;
         TextView forecastDayLow;
+        ImageView forecastIcon;
 
         ViewHolder(View itemView) {
             super(itemView);
             forecastDay = itemView.findViewById(R.id.forecast_day);
             forecastDayHigh = itemView.findViewById(R.id.forecast_high);
             forecastDayLow = itemView.findViewById(R.id.forecast_low);
+            forecastIcon = itemView.findViewById(R.id.weatherIcon);
             itemView.setOnClickListener(this);
         }
 

@@ -8,7 +8,7 @@ public class Datum {
 
     @SerializedName("time")
     @Expose
-    private Double time;
+    private Long time;
     @SerializedName("precipIntensity")
     @Expose
     private Double precipIntensity;
@@ -16,11 +16,11 @@ public class Datum {
     @Expose
     private Double precipProbability;
 
-    public Double getTime() {
+    public Long getTime() {
         return time;
     }
 
-    public void setTime(Double time) {
+    public void setTime(Long time) {
         this.time = time;
     }
 

@@ -43,7 +43,6 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements LocationListener, WeeklyForecastAdapter.ItemClickListener {
 
-    // TODO: daily forecast on bottom, in collection view
     // TODO: use weather icons
     // TODO: cache date in room or realm database
     // TODO: comment code
