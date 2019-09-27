@@ -51,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="150dp"
+            android:paddingTop="120dp"
             android:layout_centerHorizontal="true">
 
             <TextView android:id="@+id/status"
@@ -61,6 +61,7 @@
                 android:textColor="@android:color/white"
                 android:layout_gravity="center"
                 android:text="STATUS"/>
+
             <TextView android:id="@+id/temp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -69,6 +70,22 @@
                 android:fontFamily="sans-serif-thin"
                 android:layout_gravity="center"
                 android:text="TEMP°F"/>
+
+            <TextView
+                android:id="@+id/description"
+                android:text="HIGH | LOW  "
+                android:textSize="20sp"
+                android:gravity="right"
+                android:textColor="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/forecast_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+            </androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>
 

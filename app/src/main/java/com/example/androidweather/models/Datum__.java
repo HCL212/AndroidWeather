@@ -1,5 +1,5 @@
 
-package com.example.androidweather.model;
+package com.example.androidweather.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -8,7 +8,7 @@ public class Datum__ {
 
     @SerializedName("time")
     @Expose
-    private Double time;
+    private Long time;
     @SerializedName("summary")
     @Expose
     private String summary;
@@ -124,11 +124,11 @@ public class Datum__ {
     @Expose
     private Double apparentTemperatureMaxTime;
 
-    public Double getTime() {
+    public Long getTime() {
         return time;
     }
 
-    public void setTime(Double time) {
+    public void setTime(Long time) {
         this.time = time;
     }
 

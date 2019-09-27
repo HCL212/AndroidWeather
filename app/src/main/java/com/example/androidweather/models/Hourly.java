@@ -1,11 +1,11 @@
 
-package com.example.androidweather.model;
+package com.example.androidweather.models;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Daily {
+public class Hourly {
 
     @SerializedName("summary")
     @Expose
@@ -15,7 +15,7 @@ public class Daily {
     private String icon;
     @SerializedName("data")
     @Expose
-    private List<Datum__> data = null;
+    private List<Datum_> data = null;
 
     public String getSummary() {
         return summary;
@@ -33,11 +33,11 @@ public class Daily {
         this.icon = icon;
     }
 
-    public List<Datum__> getData() {
+    public List<Datum_> getData() {
         return data;
     }
 
-    public void setData(List<Datum__> data) {
+    public void setData(List<Datum_> data) {
         this.data = data;
     }
 

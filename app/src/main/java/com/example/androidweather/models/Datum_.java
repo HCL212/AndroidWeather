@@ -1,26 +1,20 @@
 
-package com.example.androidweather.model;
+package com.example.androidweather.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Currently {
+public class Datum_ {
 
     @SerializedName("time")
     @Expose
-    private Integer time;
+    private Double time;
     @SerializedName("summary")
     @Expose
     private String summary;
     @SerializedName("icon")
     @Expose
     private String icon;
-    @SerializedName("nearestStormDistance")
-    @Expose
-    private Integer nearestStormDistance;
-    @SerializedName("nearestStormBearing")
-    @Expose
-    private Integer nearestStormBearing;
     @SerializedName("precipIntensity")
     @Expose
     private Double precipIntensity;
@@ -63,12 +57,15 @@ public class Currently {
     @SerializedName("ozone")
     @Expose
     private Double ozone;
+    @SerializedName("precipType")
+    @Expose
+    private String precipType;
 
-    public Integer getTime() {
+    public Double getTime() {
         return time;
     }
 
-    public void setTime(Integer time) {
+    public void setTime(Double time) {
         this.time = time;
     }
 
@@ -86,22 +83,6 @@ public class Currently {
 
     public void setIcon(String icon) {
         this.icon = icon;
-    }
-
-    public Integer getNearestStormDistance() {
-        return nearestStormDistance;
-    }
-
-    public void setNearestStormDistance(Integer nearestStormDistance) {
-        this.nearestStormDistance = nearestStormDistance;
-    }
-
-    public Integer getNearestStormBearing() {
-        return nearestStormBearing;
-    }
-
-    public void setNearestStormBearing(Integer nearestStormBearing) {
-        this.nearestStormBearing = nearestStormBearing;
     }
 
     public Double getPrecipIntensity() {
@@ -214,6 +195,14 @@ public class Currently {
 
     public void setOzone(Double ozone) {
         this.ozone = ozone;
+    }
+
+    public String getPrecipType() {
+        return precipType;
+    }
+
+    public void setPrecipType(String precipType) {
+        this.precipType = precipType;
     }
 
 }

@@ -1,11 +1,12 @@
 
-package com.example.androidweather.model;
+package com.example.androidweather.models;
 
+import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Minutely {
+public class Daily {
 
     @SerializedName("summary")
     @Expose
@@ -15,7 +16,7 @@ public class Minutely {
     private String icon;
     @SerializedName("data")
     @Expose
-    private List<Datum> data = null;
+    private ArrayList<Datum__> data = null;
 
     public String getSummary() {
         return summary;
@@ -33,11 +34,11 @@ public class Minutely {
         this.icon = icon;
     }
 
-    public List<Datum> getData() {
+    public ArrayList<Datum__> getData() {
         return data;
     }
 
-    public void setData(List<Datum> data) {
+    public void setData(ArrayList<Datum__> data) {
         this.data = data;
     }
 
