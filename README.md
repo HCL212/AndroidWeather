@@ -2,11 +2,9 @@
 
 AndroidWeather is a weather application that shows the current weather and weekly forecast based on the user's GPS location.  The application uses the Dark Sky API for data.  
 
-## Screenshots
+## Screenshot
 
-Example
-:-------------------------:|:-------------------------:  
-![image](https://raw.githubusercontent.com/hcl212/AndroidWeather/working/screenshot.png)
+![image](https://raw.githubusercontent.com/hcl212/AndroidWeather/master/screenshot.png)
 
 ## Getting Started
 
