@@ -8,14 +8,12 @@ Download zip file and import project into Android Studio.
 
 ### Prerequisites
 
-Android Studio
-
+Android Studio  
 --GPS MUST be enabled in the emulator
 
 ## Running the tests
 
-Inside the emulator within Android Studio, set location to different latitudes and longitudes using the options.  Weather data and location will change accordingly.
-
+Inside the emulator within Android Studio, set location to different latitudes and longitudes using the options.  Weather data and location will change accordingly.  
 Refresh button will pull data from Dark Sky again and repopulate the weather information.
 
 ## Built With
