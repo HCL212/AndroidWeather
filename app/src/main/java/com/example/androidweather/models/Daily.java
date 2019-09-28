@@ -6,7 +6,10 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Daily {
+import io.realm.RealmList;
+import io.realm.RealmObject;
+
+public class Daily extends RealmObject {
 
     @SerializedName("summary")
     @Expose
@@ -16,7 +19,7 @@ public class Daily {
     private String icon;
     @SerializedName("data")
     @Expose
-    private ArrayList<Datum__> data = null;
+    private RealmList<Datum__> data = null;
 
     public String getSummary() {
         return summary;
@@ -34,11 +37,11 @@ public class Daily {
         this.icon = icon;
     }
 
-    public ArrayList<Datum__> getData() {
+    public RealmList<Datum__> getData() {
         return data;
     }
 
-    public void setData(ArrayList<Datum__> data) {
+    public void setData(RealmList<Datum__> data) {
         this.data = data;
     }
 

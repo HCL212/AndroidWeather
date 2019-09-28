@@ -4,7 +4,10 @@ package com.example.androidweather.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Example {
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+public class Example extends RealmObject {
 
     @SerializedName("latitude")
     @Expose
@@ -32,6 +35,7 @@ public class Example {
     private Flags flags;
     @SerializedName("offset")
     @Expose
+    @PrimaryKey // for realm
     private Integer offset;
 
     public Double getLatitude() {

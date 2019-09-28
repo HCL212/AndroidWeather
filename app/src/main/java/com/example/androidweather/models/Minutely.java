@@ -5,7 +5,10 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Minutely {
+import io.realm.RealmList;
+import io.realm.RealmObject;
+
+public class Minutely extends RealmObject {
 
     @SerializedName("summary")
     @Expose
@@ -15,7 +18,7 @@ public class Minutely {
     private String icon;
     @SerializedName("data")
     @Expose
-    private List<Datum> data = null;
+    private RealmList<Datum> data = null;
 
     public String getSummary() {
         return summary;
@@ -33,11 +36,11 @@ public class Minutely {
         this.icon = icon;
     }
 
-    public List<Datum> getData() {
+    public RealmList<Datum> getData() {
         return data;
     }
 
-    public void setData(List<Datum> data) {
+    public void setData(RealmList<Datum> data) {
         this.data = data;
     }
 

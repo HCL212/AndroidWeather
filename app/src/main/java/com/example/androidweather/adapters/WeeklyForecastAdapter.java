@@ -16,15 +16,17 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import io.realm.RealmList;
+
 // Recyclerview adapter for the weekly forecast
 public class WeeklyForecastAdapter extends RecyclerView.Adapter<WeeklyForecastAdapter.ViewHolder> {
 
-    private ArrayList<Datum__> mData;
+    private RealmList<Datum__> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // Data is passed into the constructor for the adapter
-    public WeeklyForecastAdapter(Context context, ArrayList<Datum__> data) {
+    public WeeklyForecastAdapter(Context context, RealmList<Datum__> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }

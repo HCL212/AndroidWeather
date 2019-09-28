@@ -33,21 +33,19 @@ import com.example.androidweather.services.RetrofitInstance;
 import com.example.androidweather.services.WeatherService;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import io.realm.Realm;
+import io.realm.RealmList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements LocationListener, WeeklyForecastAdapter.ItemClickListener {
 
-    // TODO: cache data in room or realm database
-    // TODO: readme, GPS used for accuracy
-    // TODO: FUTURE: details of each day after selecting
+    // TODO: FUTURE: details of each day after selecting (show in fragment)
     // TODO: FUTURE: user add locations
-    // TODO: FUTURE: location name is omitted when switching locations since geocoding has high latency
 
     // DARK SKY API KEY IS STORED IN GRADLE
     //private String key = BuildConfig.DarkSkyKey;
@@ -58,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     private LocationManager locationManager;
     private String provider;
 
-    private ArrayList<Datum__> weeklyData = new ArrayList<>();
+    private RealmList<Datum__> weeklyData = new RealmList<>();
     private RecyclerView recyclerView;
     private WeeklyForecastAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -79,6 +77,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Used to cache data in realm
+        // Initialize
+        Realm.init(this);
 
         refreshButton = findViewById(R.id.refresh_button);
         locationName = findViewById(R.id.address);
@@ -223,7 +225,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
                     currTemp = forecast.getCurrently().getTemperature();
                     String tempString = Double.toString(currTemp);
 
-                    // Clear ArrayList<Datum__> weeklyData and repopulate with new information
+                    // Clear RealmList<Datum__> weeklyData and repopulate with new information
                     // Notify adapter of changes so it can update recyclerview
                     weeklyData.clear();
                     weeklyData.addAll(forecast.getDaily().getData());
@@ -232,6 +234,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
                     locationName.setText(forecast.getTimezone());
                     tempView.setText(tempString+"°F");
                     weatherStatus.setText(forecast.getCurrently().getSummary());
+
+                    // Cache data in realm database
+                    Realm realm = Realm.getDefaultInstance();
+                    realm.beginTransaction();
+                    realm.copyToRealmOrUpdate(forecast);
+                    realm.commitTransaction();
+                    realm.close();
                 }
             }
 

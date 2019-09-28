@@ -4,7 +4,9 @@ package com.example.androidweather.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Datum_ {
+import io.realm.RealmObject;
+
+public class Datum_ extends RealmObject{
 
     @SerializedName("time")
     @Expose

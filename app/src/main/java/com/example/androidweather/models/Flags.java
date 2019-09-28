@@ -5,11 +5,14 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Flags {
+import io.realm.RealmList;
+import io.realm.RealmObject;
+
+public class Flags extends RealmObject {
 
     @SerializedName("sources")
     @Expose
-    private List<String> sources = null;
+    private RealmList<String> sources = null;
     @SerializedName("nearest-station")
     @Expose
     private Double nearestStation;
@@ -17,11 +20,11 @@ public class Flags {
     @Expose
     private String units;
 
-    public List<String> getSources() {
+    public RealmList<String> getSources() {
         return sources;
     }
 
-    public void setSources(List<String> sources) {
+    public void setSources(RealmList<String> sources) {
         this.sources = sources;
     }
 
