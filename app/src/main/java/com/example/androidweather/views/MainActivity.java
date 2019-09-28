@@ -43,13 +43,10 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements LocationListener, WeeklyForecastAdapter.ItemClickListener {
 
-    // TODO: use weather icons
-    // TODO: cache date in room or realm database
-    // TODO: comment code
+    // TODO: cache data in room or realm database
     // TODO: readme, GPS used for accuracy
     // TODO: FUTURE: details of each day after selecting
     // TODO: FUTURE: user add locations
-    // TODO: FUTURE: add date and time
     // TODO: FUTURE: location name is omitted when switching locations since geocoding has high latency
 
     // DARK SKY API KEY IS STORED IN GRADLE
@@ -60,6 +57,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 
     private LocationManager locationManager;
     private String provider;
+
+    private ArrayList<Datum__> weeklyData = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private WeeklyForecastAdapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
 
     private Double currTemp;
     private Double latitude;
@@ -72,11 +74,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     private TextView tempView;
     private TextView weatherStatus;
     private TextView darkSky;
-
-    private ArrayList<Datum__> weeklyData = new ArrayList<>();
-    private RecyclerView recyclerView;
-    private WeeklyForecastAdapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,22 +89,23 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         darkSky = findViewById(R.id.darksky);
         recyclerView = findViewById(R.id.forecast_recycler_view);
 
-        // use this setting to improve performance if you know that changes
+        // Use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
-        // recyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(true);
 
-        // use a linear layout manager
+        // Use a linear layout manager
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        // specify an adapter
+        // Specify an adapter
         mAdapter = new WeeklyForecastAdapter(this, weeklyData);
         mAdapter.setClickListener(this);
         recyclerView.setAdapter(mAdapter);
 
+        // Recyclerview dividers
         recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
 
-        // request permissions during runtime
+        // Request permissions during runtime
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1000);
@@ -129,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
             System.out.println("Location unavailable");
         }
 
-        // refresh button to refresh data from API
+        // Refresh button to refresh data from API
         refreshButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -137,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
             }
         });
 
-        // dark sky link
+        // Dark sky link
         darkSky.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
@@ -149,18 +147,21 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 
     }
 
+    // Request location updates while app is open
     @Override
     protected void onResume() {
         super.onResume();
         locationManager.requestLocationUpdates(provider, 400, 1, this);
     }
 
+    // Stop location updates when app is not in foreground/in use
     @Override
     protected void onPause() {
         super.onPause();
         locationManager.removeUpdates(this);
     }
 
+    // When location changes, update display information
     @Override
     public void onLocationChanged(Location location) {
         latitude = location.getLatitude();
@@ -194,24 +195,21 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
                     getForecast();
                 } else {
-                    Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Permission denied.", Toast.LENGTH_SHORT).show();
                 }
                 break;
             }
         }
     }
 
-    //@brief:
-    //Interface function from ViewMembersAdapter.java
-    //Sends user to OtherProfileActivity.java with name of user they want to view
-    //@params: [View view] [int position]
-    //@pre condition: User sees list of members in collaboration
-    //@post condition: User is moved to screen to view the profile of a specific user
+    // Interface function from WeeklyForecastAdapter.java
     @Override
     public void onItemClick(View view, int position) {
-        // do nothing
+        // Do nothing for now
     }
 
+    // Main function to make request to Dark Sky API for forecast information
+    // After response, populate relevant data on the screen
     public Object getForecast() {
         final WeatherService weatherService = RetrofitInstance.getWeatherService();
         Call<Example> call = weatherService.getWeatherData(key, latitude, longitude);
@@ -223,12 +221,15 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 
                 if (forecast != null && forecast.getCurrently() != null){
                     currTemp = forecast.getCurrently().getTemperature();
+                    String tempString = Double.toString(currTemp);
+
+                    // Clear ArrayList<Datum__> weeklyData and repopulate with new information
+                    // Notify adapter of changes so it can update recyclerview
                     weeklyData.clear();
                     weeklyData.addAll(forecast.getDaily().getData());
                     mAdapter.notifyDataSetChanged();
-                    String tempString = Double.toString(currTemp);
 
-                    //locationName.setText(hereLocation(latitude,longitude));
+                    locationName.setText(forecast.getTimezone());
                     tempView.setText(tempString+"°F");
                     weatherStatus.setText(forecast.getCurrently().getSummary());
                 }
@@ -239,11 +240,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
                 System.out.println(t);
             }
         });
-        return currTemp;
+        return 0;
     }
 
-    // geocoding too slow
-    // get name of location to display to user
+    // Geocoding too slow, UNUSED for now
+    // Get name of location to display to user
     private String hereLocation(double lat, double lon){
         String cityName = "";
 

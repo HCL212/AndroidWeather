@@ -76,7 +76,7 @@
 
             <TextView
                 android:id="@+id/description"
-                android:text="HIGH | LOW "
+                android:text="HIGH | LOW"
                 android:textSize="20sp"
                 android:gravity="right"
                 android:textColor="@android:color/white"

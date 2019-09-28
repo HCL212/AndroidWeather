@@ -12,49 +12,41 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.androidweather.R;
 import com.example.androidweather.models.Datum__;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static java.lang.Long.getLong;
-
+// Recyclerview adapter for the weekly forecast
 public class WeeklyForecastAdapter extends RecyclerView.Adapter<WeeklyForecastAdapter.ViewHolder> {
 
     private ArrayList<Datum__> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
-    //@brief: Data is passed into the constructor for the adapter
-    //@params: [Context context] [List<String> data]
+    // Data is passed into the constructor for the adapter
     public WeeklyForecastAdapter(Context context, ArrayList<Datum__> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
 
-    //@brief: Inflates the row layout from view_members_item.xml when needed
-    //@params: [ViewGroup parents] [int viewType]
-    //@pre condition: Rows not inflated inside the view
-    //@post condition: Rows inflated inside the view
-    //@return: ViewHolder with inflated views
+    // Inflates the row layout from weekly_forecast_view_item.xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.weekly_forecast_view_item, parent, false);
         return new ViewHolder(view);
     }
 
-    //@brief: Binds the data to TextView for each row
-    //@pre condition: Items in the view not binded to the view
-    //@post condition: Items binded to the view
+    // Binds the data to TextViews/ImageView for each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Datum__ forecast = mData.get(position);
 
+        // Vars to hold forecast info
         String iconString = forecast.getIcon();
         String high = Double.toString(forecast.getTemperatureHigh());
         String low = Double.toString(forecast.getTemperatureLow());
 
-        // display day of the week (ie: Monday)
+        // Display day of the week (ie: Monday)
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
         Date dateFormat = new java.util.Date(forecast.getTime() * 1000);
         String weekday = sdf.format(dateFormat);
@@ -63,6 +55,8 @@ public class WeeklyForecastAdapter extends RecyclerView.Adapter<WeeklyForecastAd
         holder.forecastDayHigh.setText(high);
         holder.forecastDayLow.setText(low);
 
+        // Display icon depending on weather
+        // If no icons fit description, show alien
         if (iconString.equals("clear-day")){
             holder.forecastIcon.setImageResource(R.drawable.ic_wi_day_sunny);
         } else if (iconString.equals("clear-night")) {
@@ -88,14 +82,13 @@ public class WeeklyForecastAdapter extends RecyclerView.Adapter<WeeklyForecastAd
         }
     }
 
-    //@brief: Returns total number of rows
-    //@return: int of total number of items for the view
+    // Returns total # of rows / size of data
     @Override
     public int getItemCount() {
         return mData.size();
     }
 
-    //@brief: Stores and recycles views as they are scrolled off the screen
+    // Stores and recycles views as they are scrolled off the screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView forecastDay;
         TextView forecastDayHigh;
@@ -117,20 +110,17 @@ public class WeeklyForecastAdapter extends RecyclerView.Adapter<WeeklyForecastAd
         }
     }
 
-    // convenience method for getting data at click position
+    // Convenience method for getting data at click position
     Datum__ getItem (int id) {
         return mData.get(id);
     }
 
-    //@brief: Allows click events by the user to be caught
-    //@params: [ItemClickListener itemClickListener]
-    //@pre condition: User has not clicked anything
-    //@post condition: When user clicks something in the view, it is registered and action is taken
+    // Allows click events by the user to be caught
     public void setClickListener(ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
     }
 
-    // parent activity will implement this method to respond to click events
+    // Parent activity will implement this method to respond to click events
     public interface ItemClickListener {
         void onItemClick(View view, int position);
     }
