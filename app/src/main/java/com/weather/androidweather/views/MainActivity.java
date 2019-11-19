@@ -1,4 +1,4 @@
-package com.example.androidweather.views;
+package com.weather.androidweather.views;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,12 +25,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.androidweather.R;
-import com.example.androidweather.adapters.WeeklyForecastAdapter;
-import com.example.androidweather.models.Datum__;
-import com.example.androidweather.models.Example;
-import com.example.androidweather.services.RetrofitInstance;
-import com.example.androidweather.services.WeatherService;
+import com.weather.androidweather.R;
+import com.weather.androidweather.adapters.WeeklyForecastAdapter;
+import com.weather.androidweather.models.Datum__;
+import com.weather.androidweather.models.Example;
+import com.weather.androidweather.services.RetrofitInstance;
+import com.weather.androidweather.services.WeatherService;
 
 import java.io.IOException;
 import java.util.List;

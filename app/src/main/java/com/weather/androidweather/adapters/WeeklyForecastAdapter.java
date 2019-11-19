@@ -1,4 +1,4 @@
-package com.example.androidweather.adapters;
+package com.weather.androidweather.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,11 +9,10 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.androidweather.R;
-import com.example.androidweather.models.Datum__;
+import com.weather.androidweather.R;
+import com.weather.androidweather.models.Datum__;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import io.realm.RealmList;

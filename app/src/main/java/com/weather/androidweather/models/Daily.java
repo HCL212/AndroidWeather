@@ -1,14 +1,13 @@
 
-package com.example.androidweather.models;
+package com.weather.androidweather.models;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
 
-public class Minutely extends RealmObject {
+public class Daily extends RealmObject {
 
     @SerializedName("summary")
     @Expose
@@ -18,7 +17,7 @@ public class Minutely extends RealmObject {
     private String icon;
     @SerializedName("data")
     @Expose
-    private RealmList<Datum> data = null;
+    private RealmList<Datum__> data = null;
 
     public String getSummary() {
         return summary;
@@ -36,11 +35,11 @@ public class Minutely extends RealmObject {
         this.icon = icon;
     }
 
-    public RealmList<Datum> getData() {
+    public RealmList<Datum__> getData() {
         return data;
     }
 
-    public void setData(RealmList<Datum> data) {
+    public void setData(RealmList<Datum__> data) {
         this.data = data;
     }
 

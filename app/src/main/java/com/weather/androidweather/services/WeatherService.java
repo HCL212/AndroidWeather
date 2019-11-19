@@ -1,6 +1,6 @@
-package com.example.androidweather.services;
+package com.weather.androidweather.services;
 
-import com.example.androidweather.models.Example;
+import com.weather.androidweather.models.Example;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

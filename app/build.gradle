@@ -4,10 +4,10 @@ apply plugin: 'realm-android'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.androidweather"
+        applicationId "com.weather.androidweather"
         minSdkVersion 28
         targetSdkVersion 28
-        versionCode 1
+        versionCode 2
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -19,6 +19,17 @@ android {
     }
     buildTypes.each {
         it.buildConfigField 'String', 'DarkSkyKey', DarkSkyAPIKey
+    }
+    bundle {
+        language {
+            enableSplit = true
+        }
+        density {
+            enableSplit = true
+        }
+        abi {
+            enableSplit = true
+        }
     }
 }
 
