@@ -11,7 +11,9 @@ AndroidWeather is a weather application that shows the current weather and weekl
 Download zip file and import project into Android Studio.
 
 ### Prerequisites
-
+Android Phone  
+ - [Google Play Store](https://play.google.com/store/apps/details?id=com.weather.androidweather)  
+  
 Android Studio  
 --GPS MUST be enabled in the emulator
 
