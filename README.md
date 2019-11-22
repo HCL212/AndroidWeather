@@ -14,8 +14,9 @@ Download zip file and import project into Android Studio.
 Android Phone  
  - [Google Play Store](https://play.google.com/store/apps/details?id=com.weather.androidweather)  
   
-Android Studio  
---GPS MUST be enabled in the emulator
+Developing  
+ - Android Studio
+ - GPS MUST be enabled in the emulator
 
 ## Running the tests
 
